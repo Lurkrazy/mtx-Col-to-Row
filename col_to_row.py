@@ -47,8 +47,8 @@ def col_to_row(file, filename):
 
         #print(words)
         if words[0][0] != '%':
-            print(words)
-            print(int(words[0]))
+            #print(words)
+            #print(int(words[0]))
             #exit()
 
             rows[int(words[0])].append(Edge(int(words[0]), int(words[1]), str(words[2])))
