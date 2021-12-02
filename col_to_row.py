@@ -3,7 +3,6 @@ import os
 
 path = "./input"
 
-
 class Edge():
     def __init__(self, row, col, weight):
         self.row = row
@@ -77,15 +76,8 @@ def col_to_row(file, filename):
             if rows[i][j]:
                 write(out_file_path, str(rows[i][j].row) + " " + str(rows[i][j].col) + " " + str(rows[i][j].weight))
 
-    #g = Graph()
-    #g.add_edges(edges)
-    #return g
-    #
-
 if __name__ == "__main__":
 
     for filename in glob.glob(os.path.join(path, '*.mtx')):
         with open(os.path.join(os.getcwd(), filename), 'r') as f:
-            #print(filename)
-            #exit()
             col_to_row(f, filename)
