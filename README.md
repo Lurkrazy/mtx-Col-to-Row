@@ -4,7 +4,7 @@ convert col-major .mtx file to row-major .mtx file.
 
 
 ## Usage 
-First, put all of your .mtx file into the input folder
+First, put all of your col-major .mtx file into the input folder
 
 
 Create output folder
