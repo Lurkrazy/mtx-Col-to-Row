@@ -14,10 +14,23 @@ def write(out_file_path, line):
     f.write(line+'\n')
     f.close()
 
-def col_to_row(file, filename):
+def mkdir(path):
+    
+    folder = os.path.exists(path)
+    if not folder:
+        os.makedirs(path)
+        print("---  new folder...  ---")
+        print("---  OK  ---")
+    else:
+        print("---  There is this folder!  ---")
+		
+#file = "G:\\xxoo\\test"
+#mkdir(file)
+
+def col_to_row(file, filename, output):
     contents = file.readlines()
     out_file_path = filename + "_out"
-    out_file_path = out_file_path.replace("input", "output")
+    out_file_path = out_file_path.replace("input", output)
     #print(out_file_path)
     #exit()
 
@@ -77,7 +90,8 @@ def col_to_row(file, filename):
                 write(out_file_path, str(rows[i][j].row) + " " + str(rows[i][j].col) + " " + str(rows[i][j].weight))
 
 if __name__ == "__main__":
-
+    output="../mtx_data"
+    mkdir(output)
     for filename in glob.glob(os.path.join(path, '*.mtx')):
         with open(os.path.join(os.getcwd(), filename), 'r') as f:
-            col_to_row(f, filename)
+            col_to_row(f, filename, output)
