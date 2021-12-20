@@ -29,9 +29,12 @@ def mkdir(path):
 
 def col_to_row(file, filename, output):
     contents = file.readlines()
-    out_file_path = filename + "_out"
+    print(filename)
+    index = filename.find('.mtx')
+    out_file_path = filename[:index] + '_row' + filename[index:]
+    print(out_file_path)
+    # out_file_path = tmp_file_path
     out_file_path = out_file_path.replace("input", output)
-    #print(out_file_path)
     #exit()
 
     write(out_file_path, contents[0].strip('\n'))
