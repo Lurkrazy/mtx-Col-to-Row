@@ -1,7 +1,7 @@
 import glob
 import os
-
-path = "./input"
+import sys
+path = "./"
 
 class Edge():
     def __init__(self, row, col, weight):
@@ -95,6 +95,7 @@ def col_to_row(file, filename, output):
 if __name__ == "__main__":
     output="../mtx_data"
     mkdir(output)
-    for filename in glob.glob(os.path.join(path, '*.mtx')):
+    #for filename in glob.glob(os.path.join(path, '*.mtx')):
+    for filename in glob.glob(os.path.join(path, sys.argv[1])):
         with open(os.path.join(os.getcwd(), filename), 'r') as f:
             col_to_row(f, filename, output)
