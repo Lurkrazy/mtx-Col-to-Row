@@ -93,9 +93,10 @@ def col_to_row(file, filename, output):
             if rows[i][j]:
                 write(out_file_path, str(rows[i][j].row) + " " + str(rows[i][j].col) + " " + str(rows[i][j].weight))
 
-def removeDup(f, filename):
+def removeDup(filename):
     writeDir = "./" + filename.replace(".mtx", "_final.mtx")
     outfile=open(writeDir,"w")
+    f = open(filename, "r")
     
     lines_seen = set()  # Build an unordered collection of unique elements.
     
@@ -121,7 +122,4 @@ if __name__ == "__main__":
             col_to_row(f, filename, output)
 
     #remove redundant lines    
-    for filename in glob.glob(os.path.join(output, '*')):
-        with open(os.path.join(os.getcwd(), filename), 'r') as f:
-            #col_to_row(f, filename, output)
-            removeDup(f, filename)
+    removeDup(sys.argv[1].replace("input", output).replace(".mtx", "_symm_row.mtx"))
