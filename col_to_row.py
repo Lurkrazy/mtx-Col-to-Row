@@ -38,7 +38,7 @@ def col_to_row(file, filename, output):
     #exit()
 
     write(out_file_path, contents[0].strip('\n'))
-    
+    #exit()
     #print(contents[0])
     #exit()
     #edges = []
@@ -54,6 +54,7 @@ def col_to_row(file, filename, output):
             M = int(words[0])#str
             N = int(words[1])#str
             L = int(words[2])#str
+            L = L - 2
             write(out_file_path, str(M) + " " + str(N) + " " + str(L))
             ite += 1
             rows = [[] for i in range(M+1)]
@@ -106,9 +107,9 @@ def removeDup(f, filename):
 
 if __name__ == "__main__":
     output="../mtx_data"
+    #output="./output"
     mkdir(output)
 
-    #output="./output"
     #print(sys.argv[1])
     os.system('bash symmetric_handle.sh '+ sys.argv[1])
 
