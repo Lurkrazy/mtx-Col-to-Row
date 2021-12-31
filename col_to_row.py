@@ -92,10 +92,35 @@ def col_to_row(file, filename, output):
             if rows[i][j]:
                 write(out_file_path, str(rows[i][j].row) + " " + str(rows[i][j].col) + " " + str(rows[i][j].weight))
 
+def removeDup(f, filename):
+    writeDir = "./" + filename.replace(".mtx", "_final.mtx")
+    outfile=open(writeDir,"w")
+    
+    lines_seen = set()  # Build an unordered collection of unique elements.
+    
+    for line in f:
+        line = line.strip('\n')
+        if line not in lines_seen:
+            outfile.write(line+ '\n')
+            lines_seen.add(line)
+
 if __name__ == "__main__":
     output="../mtx_data"
     mkdir(output)
+
+    #output="./output"
+    #print(sys.argv[1])
+    os.system('bash symmetric_handle.sh '+ sys.argv[1])
+
+    #exit()
     #for filename in glob.glob(os.path.join(path, '*.mtx')):
-    for filename in glob.glob(os.path.join(path, sys.argv[1])):
+    for filename in glob.glob(os.path.join(path, sys.argv[1].replace(".mtx", "_symm.mtx"))):
+        print("dealing with " + sys.argv[1].replace(".mtx", "_symm.mtx"))
         with open(os.path.join(os.getcwd(), filename), 'r') as f:
             col_to_row(f, filename, output)
+
+    #remove redundant lines    
+    for filename in glob.glob(os.path.join(output, '*')):
+        with open(os.path.join(os.getcwd(), filename), 'r') as f:
+            #col_to_row(f, filename, output)
+            removeDup(f, filename)
